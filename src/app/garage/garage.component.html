@@ -1,0 +1,130 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto p-3 my-3">
+            <p class="h3 float-left"> Service Requests</p>
+            <!-- <a href="" class="btn btn-primary float-right">View</a> -->
+
+        </div>
+    </div>
+    <li *ngFor="let item of items.serviceRequests | keyvalue" style="list-style: none;">
+    <!-- <div *ngFor="let service of item.serviceRequests"> -->
+        <div class="card border-1">
+            <div class="card-body">
+                <!-- {{ service | json}} -->
+                {{items.serviceRequests[item["key"]]["name"]}}
+                <br>
+                {{items.serviceRequests[item["key"]]["vehicle"]}}
+                <br>
+                Company:
+                {{vehicles[item["key"]]["company"]}}
+                <br>
+                Engine:
+                {{vehicles[item["key"]]["engine"]}}
+                <br>
+                Type:
+                {{vehicles[item["key"]]["type"]}}
+                <br>
+                <button class="btn btn-primary btn-sm" style="border-radius: 2rem;" data-toggle="modal" data-target="#ViewJobModal" (click)="viewJob(item['key'],items.serviceRequests[item['key']]['vehicle'])">View Job</button>
+            </div>
+        </div>
+
+    <!-- </div> -->
+
+
+    </li>
+    <!-- <li *ngFor="let item of user | async" style="list-style: none;"> -->
+        <!-- <div *ngFor="let service of item.serviceRequests"> -->
+            <!-- <div class="card border-1 mt-3"> -->
+                <!-- <div class="card-body"> -->
+                    <!-- {{ service | json}} -->
+                    <!-- {{user | json}} -->
+                <!-- </div> -->
+            <!-- </div> -->
+    
+        <!-- </div> -->
+    
+    
+        <!-- </li> -->
+
+</div>
+
+  <!-- Modal -->
+  
+  <div class="modal fade" id="ViewJobModal" tabindex="-1" role="dialog" aria-labelledby="ViewJobModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{items.serviceRequests[customerId]['name']}}
+          <br>
+          {{customerId}}
+          <br>
+          {{items.serviceRequests[customerId]['vehicle']}}
+          <br>
+          {{vehicles[customerId]["company"]}}
+          <br>
+          {{vehicles[customerId]["engine"]}}
+          <br>
+          {{vehicles[customerId]["type"]}}
+          <br>
+          <li *ngFor="let job of servicedata['job'] | keyvalue" style="list-style: none;">
+            <ng-container *ngIf="job['key'] == 'Others' ;then first else second"></ng-container>
+                <ng-template #first> <ng-container *ngIf="job['value'] == null ; else others"></ng-container>
+                    <ng-template #others>{{job['value']}}</ng-template>
+                </ng-template>
+                <ng-template #second> <div *ngIf="job['value']">{{job['key']}}</div></ng-template>
+               
+            </li>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#CreateJobcardModal" >Accept</button>
+          <button type="button" class="btn btn-Danger" (click) = "rejectJob(customerId)" data-dismiss="modal">Reject</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  
+    <!-- Modal -->
+    <div class="modal fade" id="CreateJobcardModal" tabindex="-1" role="dialog" aria-labelledby="CreateJobcardModal"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Job Card</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+          <div class="modal-body">
+            Jobs to be done<br>
+            <li *ngFor="let job of jobcardata | keyvalue" style="list-style: none;">
+                 <ul> <label class="border-1">{{job['key']}}</label>&nbsp;
+                  <button class="btn btn-danger btn-sm" style="border-radius: 2rem;" (click) = "removeJob(job['key'])">Remove</button>
+                  </ul>
+              </li>
+            <input type="text" class="border-1" [(ngModel)]="jobs">
+            &nbsp;
+            <button class="btn btn-primary btn-sm" style="border-radius: 2rem;" (click)="addJob()">Add</button>
+            <br>
+            Out Date&nbsp;
+            <input type="datetime-local" [(ngModel)]="outDate" (ngModelChange)="outDate = $event">
+
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="acceptJob(customerId,items.serviceRequests[customerId]['vehicle'])" data-dismiss="modal">Confirm</button>
+        </div>
+      </div>
+    </div>
+  </div>

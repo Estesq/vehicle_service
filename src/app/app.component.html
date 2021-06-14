@@ -1,0 +1,77 @@
+    <main class="wrapper">
+        <nav class="navbar fixed-top navbar-expand-md navbar-light white scrolling-navbar"> 
+            <!-- SideNav slide-out button -->
+            <div class="float-left">
+              <a href="#" id="sidebarCollapse" class="button-collapse"><i class="fas fa-bars"></i><span class="sr-only" aria-hidden="true">Toggle side navigation</span></a>
+            </div>
+            <button class="btn btn-sm ml-auto m-0 btn-primary" style="border-radius: 3rem;">Garage A</button>
+          </nav>
+            <nav id="sidebar" class="active">
+    
+                <div class="sidebar-header">
+                        <div class="text-center">
+                            Exprezy
+                          <!-- <a class="pl-0"><img style="width: 130px;height: auto;" id="helix-logo" class="img-fluid" src="./helixlogo.png" alt="helix Logo"></a> -->
+                        </div>
+                </div>
+                <hr class="m-0 p-0">
+                <ul class="list-unstyled components">
+                    <li class="active">
+                        <a href="garage"><i class="fas fa-home fa-pos"></i>Home</a>
+                    </li>
+                    <!-- <li>
+                        <a href data-target="#productSubmenu" data-toggle="collapse" class="waves-effect" aria-expanded="false">
+                            <i class="fas fa-database fa-pos"></i>Product
+                            <i class="fa fa-angle-down rotate-icon"></i>
+                        </a>
+                        <ul class="collapse list-unstyled" id="productSubmenu">
+                            <li>
+                                <a href="addProduct">Add Product</a>
+                            </li>
+                            <li>
+                                <a href="viewProducts">View Products</a>
+                            </li>
+                        </ul>
+                    </li> -->
+                    <li>
+                        <a href=""> <i class="fas fa-plus fa-pos"></i>View Requests</a>
+                    </li>
+                    <!-- <li>
+                        <a href data-target="#invoiceSubmenu" data-toggle="collapse" class="waves-effect" aria-expanded="false"> <i class="fas fa-file fa-pos"></i>Invoice
+                            <i class="fa fa-angle-down rotate-icon"></i>
+                        </a href>
+                        <ul class="collapse list-unstyled" id="invoiceSubmenu">
+                            <li>
+                                <a href="createInvoice">Create Invoice</a>
+                            </li>
+                            <li>
+                                <a href="viewInvoices">View Invoices</a>
+                            </li>
+                            <li>
+                                <a href="pendingInvoices">Pending Invoices</a>
+                            </li>
+                        </ul>
+                    </li> -->
+                    <li>
+                        <a href=""> <i class="fas fa-barcode fa-pos"></i>View ongoing Jobs</a>
+                    </li>
+                    <li>
+                        <a href=""> <i class="fas fa-barcode fa-pos"></i>View completed Jobs</a>
+                    </li>
+                    <li>
+                        <a><button class="btn btn-primary btn-sm" style="border-radius: 2rem;">logout</button></a>
+                    </li>
+                </ul>
+    
+            </nav>
+            <div class="overlay"></div>
+            <div id="content">
+                <div class="container">
+                  <router-outlet>
+                    <!-- <p> aniket chutiya </p> -->
+                  </router-outlet>
+                  </div>
+            </div>
+    </main>
+ 
+    
